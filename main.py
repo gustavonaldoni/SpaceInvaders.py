@@ -18,6 +18,9 @@ BLUE = (0,0,255)
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 
+# Initialize mixer module of pygame
+pygame.mixer.init()
+
 # Creating the screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -83,6 +86,9 @@ font = pygame.font.Font('./fonts/space_invaders.ttf', 32)
 textX = 10*2
 textY = 10*2
 
+# Game Over font
+gameOver_font = pygame.font.Font('./fonts/space_invaders.ttf', 64)
+
 # Useful functions
 def player(x,y):
     screen.blit(playerImg, (x, y))
@@ -106,6 +112,12 @@ def isCollision(enemyX,enemyY,bulletX,bulletY):
 def showScore(x,y):
     score = font.render(f'Score : {scoreValue}', True, WHITE)
     screen.blit(score, (x,y))
+
+def gameOverText():
+    gameOver_text = gameOver_font.render('GAME OVER', True, WHITE)
+    screen.fill(BLACK)
+    screen.blit(gameOver_text, (200,250))
+    
 
 # Main Loop
 running = True
@@ -163,6 +175,20 @@ while running:
 
     # Enemy movement 
     for i in range(enemyNumber):
+
+        # Game Over
+        if enemyY[i] >= playerY-20:
+            # Move all the enemies and player out the screen and show "GAME OVER"
+            for j in range(enemyNumber):
+                enemyY[j] = 2000
+            playerY = 2000
+            pygame.mixer.music.stop() # Stop background music
+            gameOverText()
+
+            bullet_state = "fired"
+
+            break
+
         enemyX[i] += enemyX_change[i]
         if enemyX[i] <= 0:
             enemyX_change[i] = enemySpeed[i]
