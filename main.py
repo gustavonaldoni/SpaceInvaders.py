@@ -220,7 +220,7 @@ while running:
         enemy(enemyX[i], enemyY[i], i)
 
     if scoreValue%5 == 0 and scoreValue != 0:
-        newEnemySpeed += 0.002
+        newEnemySpeed += 0.0002
 
     player(playerX, playerY)  
 
