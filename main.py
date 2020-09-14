@@ -33,7 +33,7 @@ pygame.display.set_icon(icon)
 background = pygame.image.load('./images/bg.png')
 
 # Background music
-mixer.music.load('./sounds/music.mp3')
+mixer.music.load('./sounds/music.wav')
 mixer.music.play(-1) # "-1" keeps the music in loop
 
 # Player information
@@ -57,6 +57,7 @@ enemyX_change = []
 enemyY_change = []
 
 enemyNumber = 6
+newEnemySpeed = 0
 
 for i in range(enemyNumber):
     enemyImg.append(pygame.image.load('./images/enemy.png'))
@@ -191,9 +192,13 @@ while running:
 
         enemyX[i] += enemyX_change[i]
         if enemyX[i] <= 0:
+            if scoreValue%5 ==0 and scoreValue != 0:
+                enemySpeed[i] += newEnemySpeed
             enemyX_change[i] = enemySpeed[i]
             enemyY[i] += enemyY_change[i]
         elif enemyX[i] >= WIDTH - enemyImgSize[i]:
+            if scoreValue%5 == 0 and scoreValue != 0:
+                enemySpeed[i] += newEnemySpeed
             enemyX_change[i] = -enemySpeed[i]
             enemyY[i] += enemyY_change[i]
     
@@ -214,6 +219,8 @@ while running:
         
         enemy(enemyX[i], enemyY[i], i)
 
+    if scoreValue%5 == 0 and scoreValue != 0:
+        newEnemySpeed += 0.002
 
     player(playerX, playerY)  
 
