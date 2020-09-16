@@ -25,7 +25,7 @@ pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Title and Icon
-icon = pygame.image.load('./images/ufo.png')
+icon = pygame.image.load('./images/icon.png')
 pygame.display.set_caption('Space Invaders')
 pygame.display.set_icon(icon)
 
