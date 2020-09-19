@@ -6,5 +6,8 @@ A simple arcade game on style of the original (and glorious) Space Invaders from
 - Pygame module
 
 # Let's play!
+- Left arrow --> move left
+- Right arrow --> move right
+- Backspace --> shoot
 
 ![Game Image1](/images/game1.PNG)
