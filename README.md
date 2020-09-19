@@ -4,3 +4,5 @@ A simple arcade game on style of the original (and glorious) Space Invaders from
 # Requirements
 - Python 3 or above 
 - Pygame module
+
+![Game Image1](/images/game1.png)
